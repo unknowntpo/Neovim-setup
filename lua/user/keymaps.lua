@@ -73,4 +73,17 @@ keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>",opts)
 keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = false }))<cr>",opts)
 keymap("n", "<S-t>", "<cmd>Telescope live_grep<cr>",opts)
 
+-- hop
+
+require 'hop'.setup()
+-- place this in one of your configuration file(s)
+local hop = require('hop')
+local directions = require('hop.hint').HintDirection
+vim.keymap.set('n', '\\w', function()
+  hop.hint_words({ direction = directions.AFTER_CURSOR, current_line_only = false })
+end, { noremap = true })
+vim.keymap.set('n', '\\b', function()
+  hop.hint_words({ direction = directions.BEFORE_CURSOR, current_line_only = false })
+end, { noremap = true })
+
 
